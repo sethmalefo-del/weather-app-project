@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Weather Dashboard</title>
+        <link rel="stylesheet" href="style.css">
+
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                margin: 0;
+                background-color: #f4f7fb;
+                font-family: system-ui, -apple-system, sans-serif;
+            }
+            .weather-app {
+                width: 100%;
+                max-width: 580px;
+                background: white;
+                padding: 2rem;
+                border-radius: 12px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            }
+            .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; text-align: center; }
+
+            /* Loading Spinner */
+            .loading-spinner {
+                display: inline-block;
+                width: 1rem;
+                height: 1rem;
+                border: 2px solid rgba(0,0,0,0.1);
+                border-left-color: #3b82f6;
+                border-radius: 50%;
+                vertical-align: middle;
+                animation: spin 1s linear infinite;
+                margin-right: 8px;
+            }
+            @keyframes spin { 100% { transform: rotate(360deg); } }
+        </style>
+    </head>
+    <body>
+        <main class="weather-app">
+            <header class="hero">
+                <p class="eyebrow">Live conditions</p>
+                <h1>🌤 Weather Dashboard</h1>
+                <p class="subhead">Search any city and get real-time weather.</p>
+            </header>
+
+            <form id="search-form" class="search-bar">
+                <input type="text" id="city-input" placeholder="Enter a city name...">
+                <button type="submit" id="search-btn">Get Weather</button>
+            </form>
+
+            <div id="status" class="status"></div>
+            <div id="error-msg" class="error"></div>
+
+            <section id="weather-card" class="card">
+                <div class="card-head">
+                    <h2 id="city-name">City Name</h2>
+                    <div class="card-actions">
+                        <button id="unit-toggle" class="pill btn-pill" type="button">°C</button>
+                        <span class="pill" id="condition">--</span>
+                    </div>
+                </div>
+                <div class="metrics-grid">
+                    <div class="metric">
+                        <span class="label">Temperature</span>
+                        <span class="value" id="temp"></span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Wind Speed</span>
+                        <span class="value" id="wind"></span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Wind Direction</span>
+                        <span class="value" id="winddir"></span>
+                    </div>
+                </div>
+
+                <h3 class="subhead" style="margin-top: 20px; font-size: 0.9rem;">5-Day Forecast</h3>
+                <div id="forecast" class="forecast-grid"></div>
+
+                <footer class="meta">
+                    <span id="updated">Updated just now</span>
+                
+                </footer>
+            </section>
+        </main>
+        <script src="weather.js"></script>
+    </body>
+</html>
